@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.ProductDao">
+  <resultMap id="BaseResultMap" type="com.ssm.entity.Product">
+    <id column="product_id" jdbcType="INTEGER" property="id" />
+    <result column="product_product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_title" jdbcType="VARCHAR" property="title" />
+    <result column="product_product_image" jdbcType="VARCHAR" property="productImage" />
+    <result column="product_old_price" jdbcType="INTEGER" property="oldPrice" />
+    <result column="product_ms_price" jdbcType="INTEGER" property="msPrice" />
+    <result column="product_shoper_id" jdbcType="INTEGER" property="shoperId" />
+    <result column="product_apply_date" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="product_check_date" jdbcType="TIMESTAMP" property="checkDate" />
+    <result column="product_check_status" jdbcType="SMALLINT" property="checkStatus" />
+    <result column="product_start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="product_end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="product_ms_product_num" jdbcType="INTEGER" property="msProductNum" />
+    <result column="product_stock_num" jdbcType="INTEGER" property="stockNum" />
+    <result column="product_description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    product.id as product_id, product.product_id as product_product_id, product.title as product_title, 
+    product.product_image as product_product_image, product.old_price as product_old_price, 
+    product.ms_price as product_ms_price, product.shoper_id as product_shoper_id, product.apply_date as product_apply_date, 
+    product.check_date as product_check_date, product.check_status as product_check_status, 
+    product.start_time as product_start_time, product.end_time as product_end_time, product.ms_product_num as product_ms_product_num, 
+    product.stock_num as product_stock_num, product.description as product_description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product product
+    where product.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ssm.entity.Product" useGeneratedKeys="true">
+    insert into product (product_id, title, product_image, 
+      old_price, ms_price, shoper_id, 
+      apply_date, check_date, check_status, 
+      start_time, end_time, ms_product_num, 
+      stock_num, description)
+    values (#{productId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{productImage,jdbcType=VARCHAR}, 
+      #{oldPrice,jdbcType=INTEGER}, #{msPrice,jdbcType=INTEGER}, #{shoperId,jdbcType=INTEGER}, 
+      #{applyDate,jdbcType=TIMESTAMP}, #{checkDate,jdbcType=TIMESTAMP}, #{checkStatus,jdbcType=SMALLINT}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{msProductNum,jdbcType=INTEGER}, 
+      #{stockNum,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ssm.entity.Product" useGeneratedKeys="true">
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="productImage != null">
+        product_image,
+      </if>
+      <if test="oldPrice != null">
+        old_price,
+      </if>
+      <if test="msPrice != null">
+        ms_price,
+      </if>
+      <if test="shoperId != null">
+        shoper_id,
+      </if>
+      <if test="applyDate != null">
+        apply_date,
+      </if>
+      <if test="checkDate != null">
+        check_date,
+      </if>
+      <if test="checkStatus != null">
+        check_status,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="msProductNum != null">
+        ms_product_num,
+      </if>
+      <if test="stockNum != null">
+        stock_num,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="productImage != null">
+        #{productImage,jdbcType=VARCHAR},
+      </if>
+      <if test="oldPrice != null">
+        #{oldPrice,jdbcType=INTEGER},
+      </if>
+      <if test="msPrice != null">
+        #{msPrice,jdbcType=INTEGER},
+      </if>
+      <if test="shoperId != null">
+        #{shoperId,jdbcType=INTEGER},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkDate != null">
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkStatus != null">
+        #{checkStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msProductNum != null">
+        #{msProductNum,jdbcType=INTEGER},
+      </if>
+      <if test="stockNum != null">
+        #{stockNum,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.entity.Product">
+    update product
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="productImage != null">
+        product_image = #{productImage,jdbcType=VARCHAR},
+      </if>
+      <if test="oldPrice != null">
+        old_price = #{oldPrice,jdbcType=INTEGER},
+      </if>
+      <if test="msPrice != null">
+        ms_price = #{msPrice,jdbcType=INTEGER},
+      </if>
+      <if test="shoperId != null">
+        shoper_id = #{shoperId,jdbcType=INTEGER},
+      </if>
+      <if test="applyDate != null">
+        apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkDate != null">
+        check_date = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkStatus != null">
+        check_status = #{checkStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msProductNum != null">
+        ms_product_num = #{msProductNum,jdbcType=INTEGER},
+      </if>
+      <if test="stockNum != null">
+        stock_num = #{stockNum,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.entity.Product">
+    update product
+    set product_id = #{productId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      product_image = #{productImage,jdbcType=VARCHAR},
+      old_price = #{oldPrice,jdbcType=INTEGER},
+      ms_price = #{msPrice,jdbcType=INTEGER},
+      shoper_id = #{shoperId,jdbcType=INTEGER},
+      apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      check_date = #{checkDate,jdbcType=TIMESTAMP},
+      check_status = #{checkStatus,jdbcType=SMALLINT},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      ms_product_num = #{msProductNum,jdbcType=INTEGER},
+      stock_num = #{stockNum,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

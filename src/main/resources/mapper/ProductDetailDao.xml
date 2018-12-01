@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.ProductDetailDao">
+  <resultMap id="BaseResultMap" type="com.ssm.entity.ProductDetail">
+    <id column="product_detail_id" jdbcType="INTEGER" property="id" />
+    <result column="product_detail_product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_detail_shoper_id" jdbcType="INTEGER" property="shoperId" />
+    <result column="product_detail_origin_place" jdbcType="VARCHAR" property="originPlace" />
+    <result column="product_detail_name" jdbcType="VARCHAR" property="name" />
+    <result column="product_detail_brand" jdbcType="VARCHAR" property="brand" />
+    <result column="product_detail_weight" jdbcType="INTEGER" property="weight" />
+    <result column="product_detail_size_package" jdbcType="VARCHAR" property="sizePackage" />
+    <result column="product_detail_detail_image" jdbcType="VARCHAR" property="detailImage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_detail.id as product_detail_id, product_detail.product_id as product_detail_product_id, 
+    product_detail.shoper_id as product_detail_shoper_id, product_detail.origin_place as product_detail_origin_place, 
+    product_detail.`name` as `product_detail_name`, product_detail.brand as product_detail_brand, 
+    product_detail.weight as product_detail_weight, product_detail.size_package as product_detail_size_package, 
+    product_detail.detail_image as product_detail_detail_image
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_detail product_detail
+    where product_detail.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ssm.entity.ProductDetail" useGeneratedKeys="true">
+    insert into product_detail (product_id, shoper_id, origin_place, 
+      `name`, brand, weight, 
+      size_package, detail_image)
+    values (#{productId,jdbcType=INTEGER}, #{shoperId,jdbcType=INTEGER}, #{originPlace,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, #{weight,jdbcType=INTEGER}, 
+      #{sizePackage,jdbcType=VARCHAR}, #{detailImage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ssm.entity.ProductDetail" useGeneratedKeys="true">
+    insert into product_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="shoperId != null">
+        shoper_id,
+      </if>
+      <if test="originPlace != null">
+        origin_place,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="sizePackage != null">
+        size_package,
+      </if>
+      <if test="detailImage != null">
+        detail_image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="shoperId != null">
+        #{shoperId,jdbcType=INTEGER},
+      </if>
+      <if test="originPlace != null">
+        #{originPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="sizePackage != null">
+        #{sizePackage,jdbcType=VARCHAR},
+      </if>
+      <if test="detailImage != null">
+        #{detailImage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.entity.ProductDetail">
+    update product_detail
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="shoperId != null">
+        shoper_id = #{shoperId,jdbcType=INTEGER},
+      </if>
+      <if test="originPlace != null">
+        origin_place = #{originPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="sizePackage != null">
+        size_package = #{sizePackage,jdbcType=VARCHAR},
+      </if>
+      <if test="detailImage != null">
+        detail_image = #{detailImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.entity.ProductDetail">
+    update product_detail
+    set product_id = #{productId,jdbcType=INTEGER},
+      shoper_id = #{shoperId,jdbcType=INTEGER},
+      origin_place = #{originPlace,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=INTEGER},
+      size_package = #{sizePackage,jdbcType=VARCHAR},
+      detail_image = #{detailImage,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
