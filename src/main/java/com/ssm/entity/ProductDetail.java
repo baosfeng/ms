@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * product_detail
- * @author 
+ * @author 小书包
  */
 public class ProductDetail implements Serializable {
     /**

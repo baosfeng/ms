@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * product
- * @author 
+ * @author 小书包
  */
 public class Product implements Serializable {
     /**

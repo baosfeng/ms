@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * shoper
- * @author 
+ * @author 小书包
  */
 public class Shoper implements Serializable {
     /**

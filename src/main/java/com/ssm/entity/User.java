@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * user
- * @author 
+ * @author 小书包
  */
 public class User implements Serializable {
     /**
