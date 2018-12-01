@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.ShoperDao">
+  <resultMap id="BaseResultMap" type="com.ssm.entity.Shoper">
+    <id column="shoper_id" jdbcType="INTEGER" property="id" />
+    <result column="shoper_name" jdbcType="VARCHAR" property="name" />
+    <result column="shoper_shop_name" jdbcType="VARCHAR" property="shopName" />
+    <result column="shoper_shop_account" jdbcType="VARCHAR" property="shopAccount" />
+    <result column="shoper_password" jdbcType="VARCHAR" property="password" />
+    <result column="shoper_business_scope" jdbcType="VARCHAR" property="businessScope" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    shoper.id as shoper_id, shoper.`name` as `shoper_name`, shoper.shop_name as shoper_shop_name, 
+    shoper.shop_account as shoper_shop_account, shoper.`password` as `shoper_password`, 
+    shoper.business_scope as shoper_business_scope
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shoper shoper
+    where shoper.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shoper
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ssm.entity.Shoper" useGeneratedKeys="true">
+    insert into shoper (`name`, shop_name, shop_account, 
+      `password`, business_scope)
+    values (#{name,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, #{shopAccount,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ssm.entity.Shoper" useGeneratedKeys="true">
+    insert into shoper
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="shopName != null">
+        shop_name,
+      </if>
+      <if test="shopAccount != null">
+        shop_account,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="businessScope != null">
+        business_scope,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null">
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAccount != null">
+        #{shopAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null">
+        #{businessScope,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.entity.Shoper">
+    update shoper
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null">
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAccount != null">
+        shop_account = #{shopAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null">
+        business_scope = #{businessScope,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.entity.Shoper">
+    update shoper
+    set `name` = #{name,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      shop_account = #{shopAccount,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      business_scope = #{businessScope,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
