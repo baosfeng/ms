@@ -4,6 +4,8 @@ import com.ssm.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * 用户dao
  * @author 小书包
@@ -40,6 +42,11 @@ public interface UserDao {
 	 */
     User selectByPrimaryKey(Integer id);
 
+	/**
+	 * 查询所有用户信息
+	 * @return
+	 */
+	List<User> findUserList();
 	/**
 	 * 更新记录通过现有的值进行更新
 	 * @param record
