@@ -5,7 +5,7 @@
     <title>Insert title here</title>
 </head>
 <body>
-<form action="/product/updateProduct" method="post">
+<form action="${pageContext.request.contextPath}/product/updateProduct" method="post">
     <input name="id" value="${msproductinfo.id }" type="hidden">
     商品id:<input name="productId" value="${msproductinfo.productId }"></br>
     商品标题:<input name="title" value="${msproductinfo.title }"></br>

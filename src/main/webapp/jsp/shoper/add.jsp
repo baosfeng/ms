@@ -5,7 +5,7 @@
     <title>商家添加</title>
 </head>
 <body>
-<form action="shoper/addShoper" method="post">
+<form action="${pageContext.request.contextPath}/shoper/addShoper" method="post">
     商家的姓名:<input name="name"></br>
     商家的店铺名称:<input name="shopName"></br>
     商家账号:<input name="shopAccount"></br>

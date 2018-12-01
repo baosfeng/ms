@@ -15,10 +15,15 @@ public class MD5Enccode {
 	 * 对字符串进行MD5加密
 	 * @param password 待加密的字符串
 	 * @return 加密函数不存在
-	 * @throws NoSuchAlgorithmException
 	 */
-	public static String encode(String password) throws NoSuchAlgorithmException {
-		byte[] bytes = MessageDigest.getInstance("MD5").digest(password.getBytes());
+	public static String encode(String password){
+		byte[] bytes = new byte[0];
+		try {
+			bytes = MessageDigest.getInstance("MD5").digest(password.getBytes());
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println("加密函数不存在");
+			e.printStackTrace();
+		}
 		return Hex.encodeHexString(bytes);
 	}
 }

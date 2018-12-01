@@ -5,7 +5,7 @@
     <title>商品审核状态</title>
 </head>
 <body>
-<form action="product/checkProduct" method="post">
+<form action="${pageContext.request.contextPath}/product/checkProduct" method="post">
     <input name="id" value="${productDetail.id }" type="hidden">
     <table>
         <tr>

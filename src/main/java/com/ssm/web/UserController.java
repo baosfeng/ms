@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -21,18 +21,20 @@ import java.util.List;
 @RequestMapping("/user")
 @Controller
 public class UserController {
+
 	@Autowired
 	private UserDao userDao;
+
 	@GetMapping("/")
 	public String add() {
 		return "user/add";
 	}
 
 	@PostMapping("/addUser")
-	public String addUser(User user) throws NoSuchAlgorithmException {
+	public String addUser(User user) {
 		user.setPassword(MD5Enccode.encode(user.getPassword()));
 		userDao.insert(user);
-		return "user/list";
+		return "index";
 	}
 
 	@GetMapping("/listUser")
@@ -42,8 +44,37 @@ public class UserController {
 		return "user/list";
 	}
 
+	@RequestMapping("/update")
+	public String update(Model model, int id) {
+		User user = userDao.selectByPrimaryKey(id);
+		model.addAttribute("user", user);
+		return "user/update";
+	}
 	@PostMapping("/updateUser")
 	public String updateUser(User user) {
-		return "user/list";
+		userDao.updateByPrimaryKeySelective(user);
+		return "redirect:/user/listUser";
+	}
+
+	@PostMapping("/checkUserName")
+	public @ResponseBody String checkUserName(String userName) {
+		User user = userDao.findUserByUserName(userName);
+		if (user != null) {
+			return "true";
+		}
+		return "false";
+	}
+
+	@GetMapping("/delUser")
+	public String deleteUser(int id) {
+		userDao.deleteByPrimaryKey(id);
+		return "redirect:/user/listUser";
+	}
+
+	@GetMapping("/queryUserById")
+	public String queryUserById(Model model, int id) {
+		User user = userDao.selectByPrimaryKey(id);
+		model.addAttribute("user", user);
+		return "user/detail";
 	}
 }

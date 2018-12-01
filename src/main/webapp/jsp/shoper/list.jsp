@@ -7,7 +7,7 @@
     <title>查看所有商家信息</title>
 </head>
 <body>
-<h1><a href="shoper/addShoper">添加商家</a></h1>
+<h1><a href="${pageContext.request.contextPath}/shoper/addShoper">添加商家</a></h1>
 <table border="2">
     <tr>
         <td>商家的姓名</td>
@@ -24,7 +24,10 @@
             <td>${item.shopAccount }</td>
             <td>${item.password }</td>
             <td>${item.businessScope }</td>
-            <td><a href="shoper/updateShoper?id=${item.id}">修改</a>||<a href="shoper/delShoper?id=${item.id}">删除</a>||<a href="shoper/queryShoperByIdShoper?id=${item.id}">查看</a></td>
+            <td>
+                <a href="${pageContext.request.contextPath}/shoper/updateShoper?id=${item.id}">修改</a>||
+                <a href="${pageContext.request.contextPath}/shoper/delShoper?id=${item.id}">删除</a>||
+                <a href="${pageContext.request.contextPath}/shoper/queryShoperByIdShoper?id=${item.id}">查看</a></td>
         </tr>
     </c:forEach>
 </table>

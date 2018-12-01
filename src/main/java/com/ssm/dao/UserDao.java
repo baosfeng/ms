@@ -43,6 +43,12 @@ public interface UserDao {
     User selectByPrimaryKey(Integer id);
 
 	/**
+	 * 根据用户名查找用户
+	 * @param userName 用户名
+	 * @return
+	 */
+	User findUserByUserName(String userName);
+	/**
 	 * 查询所有用户信息
 	 * @return
 	 */

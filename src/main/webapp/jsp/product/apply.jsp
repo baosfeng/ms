@@ -5,7 +5,7 @@
     <title>提交商品秒杀申请</title>
 </head>
 <body>
-<form action="product/applyProduct" method="post">
+<form action="${pageContext.request.contextPath}/product/applyProduct" method="post">
     商品id:<input name="productId"></br>
     商品标题:<input name="title"></br>
     商品图片地址:<input name="productImage"></br>

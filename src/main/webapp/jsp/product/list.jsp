@@ -7,7 +7,7 @@
     <title>秒杀商品列表</title>
 </head>
 <body>
-<h1><a href="product/applyProduct">申请秒杀商品</a></h1>
+<h1><a href="${pageContext.request.contextPath}/product/applyProduct">申请秒杀商品</a></h1>
 <table border="2">
     <tr>
         <td>商品id</td>
@@ -41,10 +41,10 @@
             <td>${item.stockNum }</td>
             <td>${item.description }</td>
             <td>
-                <a href="product/updateProduct?id=${item.id}">修改</a>||
-                <a href="product/deleteProductById?id=${item.id}">删除</a>||
-                <a href="product/queryProductById?id=${item.id}">查看</a>||
-                <a href="product/checkProduct?id=${item.id}">审核</a>
+                <a href="${pageContext.request.contextPath}/product/updateProduct?id=${item.id}">修改</a>||
+                <a href="${pageContext.request.contextPath}/product/deleteProductById?id=${item.id}">删除</a>||
+                <a href="${pageContext.request.contextPath}/product/queryProductById?id=${item.id}">查看</a>||
+                <a href="${pageContext.request.contextPath}/product/checkProduct?id=${item.id}">审核</a>
             </td>
         </tr>
     </c:forEach>

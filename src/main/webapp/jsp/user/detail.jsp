@@ -1,0 +1,39 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<html>
+<head>
+    <title>用户详情</title>
+</head>
+<body>
+<h1>用户详情</h1>
+<table>
+    <tr>
+        <td>用户姓名:</td>
+        <td><span>${user.name}</span></td>
+    </tr>
+    <tr>
+        <td>用户账号:</td>
+        <td><span>${user.userName}</span></td>
+    </tr>
+    <tr>
+        <td>用户密码:</td>
+        <td><span>${user.password}</span></td>
+    </tr>
+    <tr>
+        <td>用户性别:</td>
+        <td><span>${user.sex}</span></td>
+    </tr>
+    <tr>
+        <td>用户年龄:</td>
+        <td><span>${user.age}</span></td>
+    </tr>
+    <tr>
+        <td>用户地址:</td>
+        <td><span>${user.address}</span></td>
+    </tr>
+    <tr>
+        <td>用户邮箱:</td>
+        <td><span>${user.email}</span></td>
+    </tr>
+</table>
+</body>
+</html>

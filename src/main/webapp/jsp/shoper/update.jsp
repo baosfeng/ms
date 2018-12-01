@@ -5,7 +5,7 @@
     <title>更新商家信息</title>
 </head>
 <body>
-<form action="shoper/updateShoper" method="post">
+<form action="${pageContext.request.contextPath}/shoper/updateShoper" method="post">
     <input name="id" value="${shoper.id }" type="hidden"/>
     商家的姓名:<input name="name" value="${shoper.name }"></br>
     商家的店铺名称:<input name="shopName" value="${shoper.shopName }"></br>

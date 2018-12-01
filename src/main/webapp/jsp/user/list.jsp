@@ -7,7 +7,7 @@
     <title>查看所有用户</title>
 </head>
 <body>
-<h1><a href="user/addUser">添加用户</a></h1>
+<h1><a href="${pageContext.request.contextPath}/user/addUser">添加用户</a></h1>
 <table border="2">
     <tr>
         <td>编号</td>
@@ -31,9 +31,9 @@
             <td>${item.address }</td>
             <td>${item.email }</td>
             <td>
-                <a href="user/updateUser?id=${item.id}">修改</a>||
-                <a href="user/delUser?id=${item.id}">删除</a>||
-                <a href="user/queryUserById?id=${item.id}">查看</a>
+                <a href="${pageContext.request.contextPath}/user/update?id=${item.id}">修改</a>||
+                <a href="${pageContext.request.contextPath}/user/delUser?id=${item.id}">删除</a>||
+                <a href="${pageContext.request.contextPath}/user/queryUserById?id=${item.id}">查看</a>
             </td>
         </tr>
     </c:forEach>
