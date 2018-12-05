@@ -1,9 +1,9 @@
 package com.ssm;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
  * 项目初始化
@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @date 2018年12月1日13:17:26
  */
 @SpringBootApplication
-public class MsApplication {
-
+public class MsApplication extends SpringBootServletInitializer {
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(MsApplication.class);
+    }
 	public static void main(String[] args) {
 		SpringApplication.run(MsApplication.class, args);
 	}
